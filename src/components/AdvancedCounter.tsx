@@ -30,6 +30,27 @@ export default function AdvancedCounter() {
         setCurrentCount(0);
     }
 
+   
+    // useEffect to listen for this key event
+    useEffect(() => { 
+        // conditional for keys pressed and handler to call
+        function handleKeyPress(event: KeyboardEvent) {
+            if (event.key === 'ArrowUp') {
+                handleIncrement();
+            } else if (event.key === 'ArrowDown'){
+                handleDecrement();
+            }
+        }
+
+        // add to document as event listener to it knows to pay attention to keys
+        document.addEventListener('keydown', handleKeyPress)
+
+        // cleanup stop the listener!
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress)
+        };
+    }, [])
+
     return (
         <div className="py-6 px-4 bg-yellow-50 flex flex-col rounded-2xl border-2 border-green-100/60 gap-8 w-[30vw]">
             <h3>Current Count: {currentCount}</h3>
