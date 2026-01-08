@@ -22,6 +22,14 @@ export default function AdvancedCounter() {
         setCountHistory([...countHistory, currentCount])
     }, [currentCount])
 
+    // handle reset
+    function handleReset() {
+        console.log('Resetting values and history');
+        // reset history first
+        setCountHistory([]);
+        setCurrentCount(0);
+    }
+
     return (
         <div className="py-6 px-4 bg-yellow-50 flex flex-col rounded-2xl border-2 border-green-100/60 gap-8 w-[30vw]">
             <h3>Current Count: {currentCount}</h3>
@@ -36,7 +44,7 @@ export default function AdvancedCounter() {
                 {/* add a p which will reflect the history array represented as a string joined by commas */}
                 <p>{countHistory.join(', ')}</p>
             </div>
-            <button className="bg-yellow-200 hover:bg-linear-to-tr hover:from-yellow-500 hover:to-yellow-200 mx-6" aria-label="reset count button" role="button">Reset</button>
+            <button className="bg-yellow-200 hover:bg-linear-to-tr hover:from-yellow-500 hover:to-yellow-200 mx-6" aria-label="reset count button" onClick={handleReset} role="button">Reset</button>
         </div>
     )
 }
