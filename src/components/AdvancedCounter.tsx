@@ -19,7 +19,7 @@ export default function AdvancedCounter() {
 
     // create useEffect to listen for changes to count and add it to history
     useEffect(() => {
-        setCountHistory(prevHistory => [...prevHistory, currentCount])
+        setCountHistory([...countHistory, currentCount])
     }, [currentCount])
 
     return (
