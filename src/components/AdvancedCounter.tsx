@@ -2,17 +2,36 @@ import { useState } from "react"
 
 export default function AdvancedCounter() {
     const [currentCount, setCurrentCount] = useState(0);
+    const [countHistory, setCountHistory] = useState<number[]>([0]);
 
     // handle increment
     function handleIncrement() {
         console.log('Increasing count');
-        setCurrentCount(prevCount => prevCount + 1);
+        // use prev count and define varible to pass as argument to history function
+        setCurrentCount(prevCount => {
+            const newCount = prevCount + 1;
+            addToHistory(newCount);
+            // return new count as the value for current count state update
+            return newCount;
+        });
     }
 
     // handle decrement
     function handleDecrement() {
         console.log('Decreasing count');
-        setCurrentCount(prevCount => prevCount - 1);
+        setCurrentCount(prevCount => {
+            const newCount = prevCount - 1;
+            addToHistory(newCount);
+        
+            // return new count as the value for current count state update
+            return newCount;
+        })
+    }
+
+    // add to history function
+    function addToHistory(newCount: number): void {
+        // update array using spread operator and functional update
+        setCountHistory(prevCountHistory => [...prevCountHistory, newCount]);
     }
 
     return (
