@@ -5,12 +5,14 @@ export default function AdvancedCounter() {
 
     // handle increment
     function handleIncrement() {
-        console.log('increasing');
+        console.log('Increasing count');
+        setCurrentCount(prevCount => prevCount + 1);
     }
 
     // handle decrement
     function handleDecrement() {
-        console.log('decreasing');
+        console.log('Decreasing count');
+        setCurrentCount(prevCount => prevCount - 1);
     }
 
     return (
